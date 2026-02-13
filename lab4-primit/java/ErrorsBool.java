@@ -35,14 +35,17 @@ public class ErrorsBool
 
     private static Result pl2PLType(Error e)
     {
-        Result type = 
-            (e == Error.FP_OVERFLOW ? Result.INFINITY :
-                (e == Error.FP_UNDERFLOW ? Result.ZERO :
-                    (e == Error.FP_ROUNDING ? Result.A_BIT_DIFFERENT : 
-                        true ? Result.VERY_DIFFERENT
-                    )
-                )
-            );
+        Result type = null;
+        if (e == Error.FP_OVERFLOW) {
+            type = Result.INFINITY;
+        } else if (e == Error.FP_UNDERFLOW) {
+            type = Result.ZERO;
+        } else if (e == Error.FP_ROUNDING) {
+            type = Result.A_BIT_DIFFERENT;
+        } else {
+            type = Result.VERY_DIFFERENT;
+        }
+    
         /* 
             !!!! Beware: The above is not a recommended programming style.
             !!!!         It is used here only to develop understanding of

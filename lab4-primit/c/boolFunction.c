@@ -33,7 +33,7 @@ int getElement()
 int main(int argc, char *argv[])
 {
     int j = getElement();
-
+    
     printf("Input = %d, output = %d.\n", j, (j>0)*j + (j<0)*(-j));
 
     return 0;

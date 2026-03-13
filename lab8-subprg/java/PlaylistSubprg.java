@@ -170,6 +170,19 @@ public class PlaylistSubprg {
     public static void getPlaylistLength_CopyInCopyOutPassing(List<Item> playlist, FloatHolder result,
             FloatHolder resultNoAds) {
         // TASK 2b: complete this method, simulating copy-in/copy-out parameter passing
+          public static void getPlaylistLength_CopyInCopyOutPassing(List playlist, FloatHolder result, FloatHolder resultNoAds) {
+     // TASK 2b: complete this method, simulating copy-in/copy-out parameter passing
+     float temp1 = result.x;
+     float temp2 = resultNoAds.x;
+     for (Item item : playlist) {
+       temp1 = temp1 + item.length_secs;
+       if (!(item instanceof Advert)) {
+         temp2 = temp2 + item.length_secs;
+       }
+     }
+     result.x = temp1;
+     resultNoAds.x = temp2;
+  }
 
 
 
@@ -183,7 +196,7 @@ public class PlaylistSubprg {
     }
 
     public static void main(String[] args)
-        throws PlaylistProgress.EndOfPlaylist 
+        //throws PlaylistProgress.EndOfPlaylist 
         {
         // TASK 1b: remove the above throws declaration, and handle the exception properly in the loop at line 234
 
@@ -235,6 +248,7 @@ public class PlaylistSubprg {
             float remainingLength = progress.getRemainingLength();
             System.out.printf("Next item = %s \n", progress.getNextItem());
             System.out.printf("  remaining play time = %.2f \n", remainingLength);
-        }
+        }catch (PlaylistProgress.EndOfPlaylist e) { // Only catching this specific kind of exception
+        break;
     }
 }
